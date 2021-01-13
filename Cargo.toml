@@ -1,5 +1,5 @@
 [package]
-name = "openrpc"
+name = "openrpc-rs"
 version = "0.1.0"
 authors = ["fikgol <hit.cs.lijun@gmail.com>"]
 edition = "2018"

@@ -1,1 +1,1 @@
-pub mod openrpc_document;
+pub mod document;
