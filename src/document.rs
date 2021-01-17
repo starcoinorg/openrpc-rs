@@ -6,7 +6,7 @@ use std::collections::HashMap;
 
 extern crate serde_json;
 
-#[derive(Serialize, Deserialize)]
+#[derive(Serialize, Deserialize, Clone)]
 pub enum Openrpc {
     #[serde(rename = "1.2.6")]
     V26,
@@ -65,7 +65,7 @@ pub type ContactObjectEmail = String;
 pub type ContactObjectUrl = String;
 pub type SpecificationExtension = serde_json::Value;
 
-#[derive(Serialize, Deserialize)]
+#[derive(Serialize, Deserialize, Clone)]
 pub struct ContactObject {
     pub name: Option<ContactObjectName>,
     pub email: Option<ContactObjectEmail>,
@@ -75,13 +75,13 @@ pub struct ContactObject {
 pub type LicenseObjectName = String;
 pub type LicenseObjectUrl = String;
 
-#[derive(Serialize, Deserialize)]
+#[derive(Serialize, Deserialize, Clone)]
 pub struct LicenseObject {
     pub name: Option<LicenseObjectName>,
     pub url: Option<LicenseObjectUrl>,
 }
 
-#[derive(Serialize, Deserialize)]
+#[derive(Serialize, Deserialize, Clone)]
 pub struct InfoObject {
     pub title: InfoObjectProperties,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -103,7 +103,7 @@ pub type ExternalDocumentationObjectUrl = String;
 ///
 /// information about external documentation
 ///
-#[derive(Serialize, Deserialize)]
+#[derive(Serialize, Deserialize, Clone)]
 pub struct ExternalDocumentationObject {
     pub description: Option<ExternalDocumentationObjectDescription>,
     pub url: ExternalDocumentationObjectUrl,
@@ -118,7 +118,7 @@ pub type ServerObjectVariableDescription = String;
 pub type ServerObjectVariableEnumItem = String;
 pub type ServerObjectVariableEnum = Vec<ServerObjectVariableEnumItem>;
 
-#[derive(Serialize, Deserialize)]
+#[derive(Serialize, Deserialize, Clone)]
 pub struct ServerObjectVariable {
     pub default: ServerObjectVariableDefault,
     pub description: Option<ServerObjectVariableDescription>,
@@ -128,7 +128,7 @@ pub struct ServerObjectVariable {
 
 pub type ServerObjectVariables = HashMap<String, Option<serde_json::Value>>;
 
-#[derive(Serialize, Deserialize)]
+#[derive(Serialize, Deserialize, Clone)]
 pub struct ServerObject {
     pub url: ServerObjectUrl,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -160,7 +160,7 @@ pub type MethodObjectSummary = String;
 pub type TagObjectName = String;
 pub type TagObjectDescription = String;
 
-#[derive(Serialize, Deserialize)]
+#[derive(Serialize, Deserialize, Clone)]
 pub struct TagObject {
     pub name: TagObjectName,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -170,13 +170,13 @@ pub struct TagObject {
     pub external_docs: Option<ExternalDocumentationObject>,
 }
 
-#[derive(Serialize, Deserialize)]
+#[derive(Serialize, Deserialize, Clone)]
 pub struct ReferenceObject {
     #[serde(rename = "$ref")]
     pub reference: String,
 }
 
-#[derive(Serialize, Deserialize)]
+#[derive(Serialize, Deserialize, Clone)]
 #[serde(untagged)]
 pub enum TagOrReference {
     TagObject(TagObject),
@@ -193,7 +193,7 @@ pub type MethodObjectTags = Vec<TagOrReference>;
 ///
 /// either
 ///
-#[derive(Serialize, Deserialize)]
+#[derive(Serialize, Deserialize, Clone)]
 pub enum MethodObjectParamStructure {
     #[serde(rename = "by-position")]
     ByPosition,
@@ -224,7 +224,7 @@ pub type NonNegativeIntegerDefaultZero = i64;
 pub type Pattern = String;
 pub type SchemaArray = Vec<JSONSchema>;
 
-#[derive(Serialize, Deserialize)]
+#[derive(Serialize, Deserialize, Clone)]
 #[serde(untagged)]
 pub enum Items {
     JSONSchema(JSONSchema),
@@ -262,7 +262,7 @@ pub type Properties = HashMap<String, Option<serde_json::Value>>;
 ///
 pub type PatternProperties = HashMap<String, Option<serde_json::Value>>;
 
-#[derive(Serialize, Deserialize)]
+#[derive(Serialize, Deserialize, Clone)]
 #[serde(untagged)]
 pub enum DependenciesSet {
     JSONSchema(JSONSchema),
@@ -274,7 +274,7 @@ pub type Enum = Vec<AlwaysTrue>;
 pub type SimpleTypes = serde_json::Value;
 pub type ArrayOfSimpleTypes = Vec<SimpleTypes>;
 
-#[derive(Serialize, Deserialize)]
+#[derive(Serialize, Deserialize, Clone)]
 #[serde(untagged)]
 pub enum Type {
     SimpleTypes(SimpleTypes),
@@ -289,7 +289,7 @@ pub type ContentEncoding = String;
 ///
 /// Always valid if true. Never valid if false. Is constant.
 ///
-#[derive(Serialize, Deserialize)]
+#[derive(Serialize, Deserialize, Clone)]
 #[serde(untagged)]
 pub enum JSONSchema {
     JsonSchemaObject(RootSchema),
@@ -299,7 +299,7 @@ pub enum JSONSchema {
 pub type ContentDescriptorObjectRequired = bool;
 pub type ContentDescriptorObjectDeprecated = bool;
 
-#[derive(Serialize, Deserialize)]
+#[derive(Serialize, Deserialize, Clone)]
 pub struct ContentDescriptorObject {
     pub name: ContentDescriptorObjectName,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -313,7 +313,7 @@ pub struct ContentDescriptorObject {
     pub deprecated: Option<ContentDescriptorObjectDeprecated>,
 }
 
-#[derive(Serialize, Deserialize)]
+#[derive(Serialize, Deserialize, Clone)]
 #[serde(untagged)]
 pub enum ContentDescriptorOrReference {
     ContentDescriptorObject(ContentDescriptorObject),
@@ -342,7 +342,7 @@ pub type ErrorObjectData = serde_json::Value;
 ///
 /// Defines an application level error.
 ///
-#[derive(Serialize, Deserialize)]
+#[derive(Serialize, Deserialize, Clone)]
 pub struct ErrorObject {
     pub code: ErrorObjectCode,
     pub message: ErrorObjectMessage,
@@ -350,7 +350,7 @@ pub struct ErrorObject {
     pub data: Option<ErrorObjectData>,
 }
 
-#[derive(Serialize, Deserialize)]
+#[derive(Serialize, Deserialize, Clone)]
 #[serde(untagged)]
 pub enum ErrorOrReference {
     ErrorObject(ErrorObject),
@@ -368,7 +368,7 @@ pub type LinkObjectMethod = String;
 pub type LinkObjectDescription = String;
 pub type LinkObjectParams = serde_json::Value;
 
-#[derive(Serialize, Deserialize)]
+#[derive(Serialize, Deserialize, Clone)]
 pub struct LinkObjectServer {
     pub url: ServerObjectUrl,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -381,7 +381,7 @@ pub struct LinkObjectServer {
     pub variables: Option<ServerObjectVariables>,
 }
 
-#[derive(Serialize, Deserialize)]
+#[derive(Serialize, Deserialize, Clone)]
 pub struct LinkObject {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub name: Option<LinkObjectName>,
@@ -397,7 +397,7 @@ pub struct LinkObject {
     pub server: Option<LinkObjectServer>,
 }
 
-#[derive(Serialize, Deserialize)]
+#[derive(Serialize, Deserialize, Clone)]
 #[serde(untagged)]
 pub enum LinkOrReference {
     LinkObject(LinkObject),
@@ -412,7 +412,7 @@ pub type ExampleObjectValue = serde_json::Value;
 pub type ExampleObjectDescription = String;
 pub type ExampleObjectName = String;
 
-#[derive(Serialize, Deserialize)]
+#[derive(Serialize, Deserialize, Clone)]
 pub struct ExampleObject {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub summary: Option<ExampleObjectSummary>,
@@ -422,7 +422,7 @@ pub struct ExampleObject {
     pub name: ExampleObjectName,
 }
 
-#[derive(Serialize, Deserialize)]
+#[derive(Serialize, Deserialize, Clone)]
 #[serde(untagged)]
 pub enum ExampleOrReference {
     ExampleObject(ExampleObject),
@@ -431,14 +431,14 @@ pub enum ExampleOrReference {
 
 pub type ExamplePairingObjectParams = Vec<ExampleOrReference>;
 
-#[derive(Serialize, Deserialize)]
+#[derive(Serialize, Deserialize, Clone)]
 #[serde(untagged)]
 pub enum ExamplePairingObjectResult {
     ExampleObject(ExampleObject),
     ReferenceObject(ReferenceObject),
 }
 
-#[derive(Serialize, Deserialize)]
+#[derive(Serialize, Deserialize, Clone)]
 pub struct ExamplePairingObject {
     pub name: ExamplePairingObjectName,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -447,7 +447,7 @@ pub struct ExamplePairingObject {
     pub result: ExamplePairingObjectResult,
 }
 
-#[derive(Serialize, Deserialize)]
+#[derive(Serialize, Deserialize, Clone)]
 #[serde(untagged)]
 pub enum ExamplePairingOrReference {
     ExampleObject(ExampleObject),
@@ -457,7 +457,7 @@ pub enum ExamplePairingOrReference {
 pub type MethodObjectExamples = Vec<ExamplePairingOrReference>;
 pub type MethodObjectDeprecated = bool;
 
-#[derive(Serialize, Deserialize)]
+#[derive(Serialize, Deserialize, Clone)]
 pub struct MethodObject {
     pub name: MethodObjectName,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -495,7 +495,7 @@ pub type ExamplePairingComponents = HashMap<String, Option<serde_json::Value>>;
 pub type ContentDescriptorComponents = HashMap<String, Option<serde_json::Value>>;
 pub type TagComponents = HashMap<String, Option<serde_json::Value>>;
 
-#[derive(Serialize, Deserialize)]
+#[derive(Serialize, Deserialize, Clone)]
 pub struct Components {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub schemas: Option<SchemaComponents>,
@@ -514,7 +514,7 @@ pub struct Components {
     pub tags: Option<TagComponents>,
 }
 
-#[derive(Serialize, Deserialize)]
+#[derive(Serialize, Deserialize, Clone)]
 pub struct OpenrpcDocument {
     pub openrpc: Openrpc,
     pub info: InfoObject,
