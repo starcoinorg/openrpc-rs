@@ -1,2 +1,2 @@
 # openrpc-rs
-This is a rust library for generate JSON Schema file for the OpenRPC Specification.
+This is a rust library for generating JSON Schema file for the OpenRPC Specification.
