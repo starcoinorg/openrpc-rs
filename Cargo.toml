@@ -7,6 +7,6 @@ edition = "2018"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-schemars = {git = "https://github.com/starcoinorg/schemars", rev="e3d6963374488f99b1ef5e7e1c4fffebb861c4cd"}
+schemars = {git = "https://github.com/starcoinorg/schemars", rev="df0a14869dbb509c5d770a0dc305daae8a46bbd7"}
 serde_json = "1.0"
 serde = "1.0"
