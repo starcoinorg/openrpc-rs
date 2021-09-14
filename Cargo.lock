@@ -430,14 +430,32 @@ dependencies = [
 ]
 
 [[package]]
-name = "multihash"
-version = "0.13.2"
+name = "multiaddr"
+version = "0.13.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "4dac63698b887d2d929306ea48b63760431ff8a24fac40ddb22f9c7f49fb7cab"
+checksum = "48ee4ea82141951ac6379f964f71b20876d43712bea8faf6dd1a375e08a46499"
+dependencies = [
+ "arrayref",
+ "bs58",
+ "byteorder",
+ "data-encoding",
+ "multihash",
+ "percent-encoding",
+ "serde",
+ "static_assertions",
+ "unsigned-varint",
+ "url",
+]
+
+[[package]]
+name = "multihash"
+version = "0.14.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "752a61cd890ff691b4411423d23816d5866dd5621e4d1c5687a53b94b5a979d8"
 dependencies = [
  "generic-array",
  "multihash-derive",
- "unsigned-varint 0.5.1",
+ "unsigned-varint",
 ]
 
 [[package]]
@@ -482,24 +500,6 @@ dependencies = [
  "schemars",
  "serde",
  "serde_json",
-]
-
-[[package]]
-name = "parity-multiaddr"
-version = "0.11.2"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "58341485071825827b7f03cf7efd1cb21e6a709bea778fb50227fd45d2f361b4"
-dependencies = [
- "arrayref",
- "bs58",
- "byteorder",
- "data-encoding",
- "multihash",
- "percent-encoding",
- "serde",
- "static_assertions",
- "unsigned-varint 0.7.0",
- "url",
 ]
 
 [[package]]
@@ -752,12 +752,12 @@ checksum = "71d301d4193d031abdd79ff7e3dd721168a9572ef3fe51a1517aba235bd8f86e"
 [[package]]
 name = "schemars"
 version = "0.8.3"
-source = "git+https://github.com/fikgol/schemars?rev=f31aab7c9f32513b4d40d0218942c906171fabd6#f31aab7c9f32513b4d40d0218942c906171fabd6"
+source = "git+https://github.com/starcoinorg/schemars?rev=e3d6963374488f99b1ef5e7e1c4fffebb861c4cd#e3d6963374488f99b1ef5e7e1c4fffebb861c4cd"
 dependencies = [
  "diem-crypto",
  "dyn-clone",
  "move-core-types",
- "parity-multiaddr",
+ "multiaddr",
  "schemars_derive",
  "serde",
  "serde_json",
@@ -766,7 +766,7 @@ dependencies = [
 [[package]]
 name = "schemars_derive"
 version = "0.8.3"
-source = "git+https://github.com/fikgol/schemars?rev=f31aab7c9f32513b4d40d0218942c906171fabd6#f31aab7c9f32513b4d40d0218942c906171fabd6"
+source = "git+https://github.com/starcoinorg/schemars?rev=e3d6963374488f99b1ef5e7e1c4fffebb861c4cd#e3d6963374488f99b1ef5e7e1c4fffebb861c4cd"
 dependencies = [
  "proc-macro2 1.0.29",
  "quote 1.0.9",
@@ -1009,12 +1009,6 @@ dependencies = [
  "generic-array",
  "subtle",
 ]
-
-[[package]]
-name = "unsigned-varint"
-version = "0.5.1"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "f7fdeedbf205afadfe39ae559b75c3240f24e257d0ca27e85f85cb82aa19ac35"
 
 [[package]]
 name = "unsigned-varint"
