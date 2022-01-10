@@ -214,7 +214,7 @@ checksum = "3ee2393c4a91429dffb4bedf19f4d6abf27d8a732c8ce4980305d782e5426d57"
 [[package]]
 name = "diem-crypto"
 version = "0.0.2"
-source = "git+https://github.com/starcoinorg/diem?rev=6b1533f22b3075cc15ff68db21b5b84e6baa2955#6b1533f22b3075cc15ff68db21b5b84e6baa2955"
+source = "git+https://github.com/starcoinorg/diem?rev=cb1ebfd821f4750cd525efbd6bdc8e4a71a4bf3b#cb1ebfd821f4750cd525efbd6bdc8e4a71a4bf3b"
 dependencies = [
  "aes-gcm",
  "anyhow",
@@ -245,7 +245,7 @@ dependencies = [
 [[package]]
 name = "diem-crypto-derive"
 version = "0.0.2"
-source = "git+https://github.com/starcoinorg/diem?rev=6b1533f22b3075cc15ff68db21b5b84e6baa2955#6b1533f22b3075cc15ff68db21b5b84e6baa2955"
+source = "git+https://github.com/starcoinorg/diem?rev=cb1ebfd821f4750cd525efbd6bdc8e4a71a4bf3b#cb1ebfd821f4750cd525efbd6bdc8e4a71a4bf3b"
 dependencies = [
  "proc-macro2 1.0.29",
  "quote 1.0.9",
@@ -415,7 +415,7 @@ checksum = "c9be0862c1b3f26a88803c4a49de6889c10e608b3ee9344e6ef5b45fb37ad3d1"
 [[package]]
 name = "move-core-types"
 version = "0.0.2"
-source = "git+https://github.com/starcoinorg/diem?rev=6b1533f22b3075cc15ff68db21b5b84e6baa2955#6b1533f22b3075cc15ff68db21b5b84e6baa2955"
+source = "git+https://github.com/starcoinorg/diem?rev=cb1ebfd821f4750cd525efbd6bdc8e4a71a4bf3b#cb1ebfd821f4750cd525efbd6bdc8e4a71a4bf3b"
 dependencies = [
  "anyhow",
  "bcs",
@@ -752,7 +752,7 @@ checksum = "71d301d4193d031abdd79ff7e3dd721168a9572ef3fe51a1517aba235bd8f86e"
 [[package]]
 name = "schemars"
 version = "0.8.3"
-source = "git+https://github.com/starcoinorg/schemars?rev=3f8ecc27f02b27d56c716de58d7880ae7816390c#3f8ecc27f02b27d56c716de58d7880ae7816390c"
+source = "git+https://github.com/starcoinorg/schemars?rev=8ada318f4283a4dbb5adeea8a31a8db6a05e0f4d#8ada318f4283a4dbb5adeea8a31a8db6a05e0f4d"
 dependencies = [
  "diem-crypto",
  "dyn-clone",
@@ -766,7 +766,7 @@ dependencies = [
 [[package]]
 name = "schemars_derive"
 version = "0.8.3"
-source = "git+https://github.com/starcoinorg/schemars?rev=3f8ecc27f02b27d56c716de58d7880ae7816390c#3f8ecc27f02b27d56c716de58d7880ae7816390c"
+source = "git+https://github.com/starcoinorg/schemars?rev=8ada318f4283a4dbb5adeea8a31a8db6a05e0f4d#8ada318f4283a4dbb5adeea8a31a8db6a05e0f4d"
 dependencies = [
  "proc-macro2 1.0.29",
  "quote 1.0.9",
