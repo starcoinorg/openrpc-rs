@@ -532,7 +532,7 @@ checksum = "c9be0862c1b3f26a88803c4a49de6889c10e608b3ee9344e6ef5b45fb37ad3d1"
 [[package]]
 name = "move-core-types"
 version = "0.0.3"
-source = "git+https://github.com/starcoinorg/move?rev=143da92819a81d0910b84445b6619b05d9b425d5#143da92819a81d0910b84445b6619b05d9b425d5"
+source = "git+https://github.com/starcoinorg/move?rev=1d252312cdce83c10c93be349c21390a2b9a465a#1d252312cdce83c10c93be349c21390a2b9a465a"
 dependencies = [
  "anyhow",
  "bcs",
@@ -927,7 +927,7 @@ checksum = "73b4b750c782965c211b42f022f59af1fbceabdd026623714f104152f1ec149f"
 [[package]]
 name = "schemars"
 version = "0.8.3"
-source = "git+https://github.com/starcoinorg/schemars?rev=188719f089f0cd551168ec1c102ffcbfca2559fc#188719f089f0cd551168ec1c102ffcbfca2559fc"
+source = "git+https://github.com/starcoinorg/schemars?rev=5bb034597f4bddd577f5d9baaabe5a41e9236d2f#5bb034597f4bddd577f5d9baaabe5a41e9236d2f"
 dependencies = [
  "dyn-clone",
  "move-core-types",
@@ -941,7 +941,7 @@ dependencies = [
 [[package]]
 name = "schemars_derive"
 version = "0.8.3"
-source = "git+https://github.com/starcoinorg/schemars?rev=188719f089f0cd551168ec1c102ffcbfca2559fc#188719f089f0cd551168ec1c102ffcbfca2559fc"
+source = "git+https://github.com/starcoinorg/schemars?rev=5bb034597f4bddd577f5d9baaabe5a41e9236d2f#5bb034597f4bddd577f5d9baaabe5a41e9236d2f"
 dependencies = [
  "proc-macro2 1.0.36",
  "quote 1.0.15",
@@ -1398,7 +1398,7 @@ checksum = "712e227841d057c1ee1cd2fb22fa7e5a5461ae8e48fa2ca79ec42cfc1931183f"
 [[package]]
 name = "workspace-hack"
 version = "0.1.0"
-source = "git+https://github.com/starcoinorg/move?rev=143da92819a81d0910b84445b6619b05d9b425d5#143da92819a81d0910b84445b6619b05d9b425d5"
+source = "git+https://github.com/starcoinorg/move?rev=1d252312cdce83c10c93be349c21390a2b9a465a#1d252312cdce83c10c93be349c21390a2b9a465a"
 dependencies = [
  "arrayvec",
  "block-buffer",
