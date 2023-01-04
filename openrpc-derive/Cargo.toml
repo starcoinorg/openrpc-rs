@@ -13,7 +13,7 @@ syn = { version = "1.0", features = ["full", "extra-traits", "visit", "fold"] }
 proc-macro2 = "1.0"
 quote = "1.0.6"
 proc-macro-crate = "0.1.4"
-openrpc-rs = { git = "https://github.com/starcoinorg/openrpc-rs"}
+openrpc-schema = {path = "../openrpc-schema"}
 [dev-dependencies]
 jsonrpc-core = { version = "17.0"}
 serde = { version = "1.0", features = ["derive"] }
