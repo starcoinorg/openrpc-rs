@@ -252,22 +252,13 @@ name = "openrpc-derive"
 version = "0.1.0"
 dependencies = [
  "jsonrpc-core",
- "openrpc-rs 0.1.0 (git+https://github.com/starcoinorg/openrpc-rs)",
+ "openrpc-rs",
  "proc-macro-crate 0.1.5",
  "proc-macro2",
  "quote",
  "serde",
  "serde_json",
  "syn",
-]
-
-[[package]]
-name = "openrpc-rs"
-version = "0.1.0"
-dependencies = [
- "schemars",
- "serde",
- "serde_json",
 ]
 
 [[package]]
