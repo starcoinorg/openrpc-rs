@@ -1,6 +1,5 @@
 use openrpc_derive::openrpc_schema;
 
-
 #[openrpc_schema]
 pub trait DebugApi {
     /// panic function

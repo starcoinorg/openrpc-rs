@@ -3,8 +3,8 @@ extern crate proc_macro;
 use proc_macro::TokenStream;
 use syn::parse_macro_input;
 
-mod params;
 mod attr;
+mod params;
 mod rpc_trait;
 mod to_gen_schema;
 

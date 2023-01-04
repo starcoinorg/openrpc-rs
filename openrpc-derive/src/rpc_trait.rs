@@ -39,9 +39,7 @@ impl<'a> Fold for RpcTrait {
     }
 }
 
-fn compute_method_registrations(
-    item_trait: &syn::ItemTrait,
-) -> Result<Vec<MethodRegistration>> {
+fn compute_method_registrations(item_trait: &syn::ItemTrait) -> Result<Vec<MethodRegistration>> {
     let methods_result: Result<Vec<_>> = item_trait
         .items
         .iter()

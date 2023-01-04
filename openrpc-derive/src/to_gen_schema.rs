@@ -1,14 +1,9 @@
 use crate::attr::AttributeKind;
-use quote::quote;
 use crate::attr::RpcMethodAttribute;
-use syn::{
-    Result,
-    punctuated::Punctuated,
-};
+use quote::quote;
+use syn::{punctuated::Punctuated, Result};
 
-pub fn generate_schema_method(
-    methods: &[MethodRegistration],
-) -> Result<syn::ImplItem> {
+pub fn generate_schema_method(methods: &[MethodRegistration]) -> Result<syn::ImplItem> {
     let mut schema_methods = vec![];
     for method in methods {
         match method {
@@ -26,41 +21,41 @@ pub fn generate_schema_method(
                 };
                 let args_types = compute_arg_type(&args)?;
                 let arg_schemas = quote! {  {
-                        let mut arg_schemas = vec![];
-                        #(arg_schemas.push(
-                        ContentDescriptorOrReference::new_content_descriptor::<#args_types>(
-                            stringify!(#arg_names).to_string(),
-                            None,
-                        )
-                        ));*;
-                        arg_schemas
-                    }
-                            };
-                let schema_method = quote! {{
-                        let mut method_object = MethodObject::new(#rpc_name.to_string(), None);
-                        let returns = ContentDescriptorOrReference::new_content_descriptor::<#returns>(
-                        stringify!(#returns).to_string(),
+                    let mut arg_schemas = vec![];
+                    #(arg_schemas.push(
+                    ContentDescriptorOrReference::new_content_descriptor::<#args_types>(
+                        stringify!(#arg_names).to_string(),
                         None,
-                        );
-                        method_object.result = returns;
-                                method_object.params = #arg_schemas;
-                        method_object
-                    }};
+                    )
+                    ));*;
+                    arg_schemas
+                }
+                        };
+                let schema_method = quote! {{
+                    let mut method_object = MethodObject::new(#rpc_name.to_string(), None);
+                    let returns = ContentDescriptorOrReference::new_content_descriptor::<#returns>(
+                    stringify!(#returns).to_string(),
+                    None,
+                    );
+                    method_object.result = returns;
+                            method_object.params = #arg_schemas;
+                    method_object
+                }};
                 schema_methods.push(schema_method);
             }
         }
     }
 
     let generate_schema_method = syn::parse_quote! {
-        pub fn gen_schema() -> OpenrpcDocument {
-            let mut document = OpenrpcDocument::default();
-            let args_tuple = [#(#schema_methods,)*];
-            for a in args_tuple.to_vec(){
-            document.add_object_method(a);
-            }
-            document
-        }};
-    
+    pub fn gen_schema() -> OpenrpcDocument {
+        let mut document = OpenrpcDocument::default();
+        let args_tuple = [#(#schema_methods,)*];
+        for a in args_tuple.to_vec(){
+        document.add_object_method(a);
+        }
+        document
+    }};
+
     Ok(generate_schema_method)
 }
 
@@ -92,9 +87,9 @@ fn compute_args(method: &syn::TraitItemMethod) -> Punctuated<syn::FnArg, syn::to
         };
         let segments = match &**ty {
             syn::Type::Path(syn::TypePath {
-                                path: syn::Path { ref segments, .. },
-                                ..
-                            }) => segments,
+                path: syn::Path { ref segments, .. },
+                ..
+            }) => segments,
             _ => continue,
         };
         let ident = match &segments[0] {
@@ -167,9 +162,9 @@ fn compute_returns(method: &syn::TraitItemMethod, returns: &Option<String>) -> R
 fn try_infer_returns(output: &syn::ReturnType) -> Option<syn::Type> {
     let extract_path_segments = |ty: &syn::Type| match ty {
         syn::Type::Path(syn::TypePath {
-                            path: syn::Path { segments, .. },
-                            ..
-                        }) => Some(segments.clone()),
+            path: syn::Path { segments, .. },
+            ..
+        }) => Some(segments.clone()),
         _ => None,
     };
 
@@ -206,8 +201,8 @@ fn try_infer_returns(output: &syn::ReturnType) -> Option<syn::Type> {
 fn get_first_type_argument(args: &syn::PathArguments) -> Option<syn::Type> {
     match args {
         syn::PathArguments::AngleBracketed(syn::AngleBracketedGenericArguments {
-                                               args, ..
-                                           }) => {
+            args, ..
+        }) => {
             if !args.is_empty() {
                 match &args[0] {
                     syn::GenericArgument::Type(ty) => Some(ty.clone()),
