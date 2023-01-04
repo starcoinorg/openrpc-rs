@@ -1,11 +1,10 @@
 use crate::attr::{AttributeKind, RpcMethodAttribute};
 use crate::to_gen_schema::generate_schema_method;
 use crate::to_gen_schema::{MethodRegistration, RpcMethod};
-use proc_macro2::Span;
 use quote::quote;
 use syn::{
     fold::{self, Fold},
-    parse_quote, Error, Ident, Result,
+    parse_quote, Result,
 };
 
 const METADATA_TYPE: &str = "Metadata";
@@ -78,13 +77,7 @@ fn rpc_wrapper_mod_name(rpc_trait: &syn::ItemTrait) -> syn::Ident {
     syn::Ident::new(&mod_name, proc_macro2::Span::call_site())
 }
 
-pub fn crate_name(name: &str) -> Result<Ident> {
-    proc_macro_crate::crate_name(name)
-        .map(|name| Ident::new(&name, Span::call_site()))
-        .map_err(|e| Error::new(Span::call_site(), &e))
-}
-
-pub fn rpc_impl(input: syn::Item) -> Result<proc_macro2::TokenStream> {
+pub fn rpc_trait(input: syn::Item) -> Result<proc_macro2::TokenStream> {
     let rpc_trait = match input {
         syn::Item::Trait(item_trait) => item_trait,
         item => {
@@ -96,13 +89,10 @@ pub fn rpc_impl(input: syn::Item) -> Result<proc_macro2::TokenStream> {
     };
     let method_registrations = compute_method_registrations(&rpc_trait)?;
     let mod_name_ident = rpc_wrapper_mod_name(&rpc_trait);
-    let core_name = crate_name("jsonrpc-core")?;
     let generate_schema_method = generate_schema_method(&method_registrations)?;
     Ok(quote!(
         mod #mod_name_ident {
-            use #core_name as _jsonrpc_core;
-            use openrpc_rs::document::*;
-            use super::*;
+            use openrpc_schema::document::*;
             #generate_schema_method
         }
     ))

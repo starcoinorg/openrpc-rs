@@ -1,6 +1,6 @@
-use openrpc_derive::openrpc_schema;
+use openrpc_derive::openrpc;
 
-#[openrpc_schema]
+#[openrpc]
 pub trait DebugApi {
     /// panic function
     #[rpc(name = "debug.panic")]
