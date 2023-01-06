@@ -1,14 +1,14 @@
+use jsonrpc_core::Error;
 use openrpc_derive::openrpc;
-
 #[openrpc]
 pub trait DebugApi {
     /// panic function
     #[rpc(name = "debug.panic")]
-    fn panic(&self, me: String) -> Result<String, &str>;
+    fn panic(&self, me: String) -> Result<String, Error>;
 
     ///Only can used under dev net.
     #[rpc(name = "debug.sleep")]
-    fn sleep(&self, time: u64) -> Result<String, &str>;
+    fn sleep(&self, time: u64) -> Result<String, Error>;
 }
 
 fn main() {

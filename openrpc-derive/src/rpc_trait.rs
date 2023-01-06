@@ -78,7 +78,7 @@ fn rpc_wrapper_mod_name(rpc_trait: &syn::ItemTrait) -> syn::Ident {
 }
 
 pub fn rpc_trait(input: syn::Item) -> Result<proc_macro2::TokenStream> {
-    let rpc_trait = match input {
+    let rpc_trait = match input.clone() {
         syn::Item::Trait(item_trait) => item_trait,
         item => {
             return Err(syn::Error::new_spanned(
@@ -90,10 +90,20 @@ pub fn rpc_trait(input: syn::Item) -> Result<proc_macro2::TokenStream> {
     let method_registrations = compute_method_registrations(&rpc_trait)?;
     let mod_name_ident = rpc_wrapper_mod_name(&rpc_trait);
     let generate_schema_method = generate_schema_method(&method_registrations)?;
-    Ok(quote!(
-        mod #mod_name_ident {
-            use openrpc_schema::document::*;
-            #generate_schema_method
-        }
-    ))
+
+    let jsonrpc_quote = quote!(
+        use jsonrpc_derive::rpc;
+        #[rpc]
+        #input
+    );
+    let openrpc_quote = quote!(
+    mod #mod_name_ident {
+    use openrpc_schema::document::*;
+    #generate_schema_method
+    });
+    Ok(if cfg!(feature = "jsonrpc") {
+        quote!(#openrpc_quote #jsonrpc_quote)
+    } else {
+        quote!(#openrpc_quote)
+    })
 }
