@@ -9,7 +9,7 @@ use syn::{
 
 const METADATA_TYPE: &str = "Metadata";
 
-const RPC_MOD_NAME_PREFIX: &str = "openrpc_schema_";
+const OPENRPC_SCHEMA_MODE_PREFIX: &str = "openrpc_schema_";
 
 struct RpcTrait {
     methods: Vec<RpcMethod>,
@@ -73,7 +73,7 @@ fn compute_method_registrations(item_trait: &syn::ItemTrait) -> Result<Vec<Metho
 
 fn rpc_wrapper_mod_name(rpc_trait: &syn::ItemTrait) -> syn::Ident {
     let name = rpc_trait.ident.clone();
-    let mod_name = format!("{}{}", RPC_MOD_NAME_PREFIX, name.to_string());
+    let mod_name = format!("{}{}", OPENRPC_SCHEMA_MODE_PREFIX, name.to_string());
     syn::Ident::new(&mod_name, proc_macro2::Span::call_site())
 }
 
@@ -97,11 +97,14 @@ pub fn rpc_trait(input: syn::Item) -> Result<proc_macro2::TokenStream> {
         #input
     );
     let openrpc_quote = quote!(
-    mod #mod_name_ident {
-    use super::*;
-    use openrpc_schema::document::*;
-    #generate_schema_method
-    });
+        mod #mod_name_ident {
+            use super::*;
+            use openrpc_schema::document::*;
+            #generate_schema_method
+
+        }
+        pub use self::#mod_name_ident::gen_schema;
+    );
     Ok(if cfg!(feature = "jsonrpc") {
         quote!(#openrpc_quote #jsonrpc_quote)
     } else {

@@ -1,5 +1,6 @@
 use jsonrpc_core::Error;
 use openrpc_derive::openrpc;
+
 #[openrpc]
 pub trait DebugApi {
     /// panic function
@@ -12,7 +13,7 @@ pub trait DebugApi {
 }
 
 fn main() {
-    let schema = openrpc_schema_DebugApi::gen_schema();
+    let schema = self::gen_schema();
     let j = serde_json::to_string_pretty(&schema).unwrap();
     println!("{}", j);
 }

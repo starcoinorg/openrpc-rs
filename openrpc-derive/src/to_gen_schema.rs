@@ -23,22 +23,22 @@ pub fn generate_schema_method(methods: &[MethodRegistration]) -> Result<syn::Imp
                 let arg_schemas = quote! {  {
                     let mut arg_schemas = vec![];
                     #(arg_schemas.push(
-                    ContentDescriptorOrReference::new_content_descriptor::<#args_types>(
-                        stringify!(#arg_names).to_string(),
-                        None,
-                    )
+                        ContentDescriptorOrReference::new_content_descriptor::<#args_types>(
+                            stringify!(#arg_names).to_string(),
+                            None,
+                        )
                     ));*;
                     arg_schemas
                 }
-                        };
+                };
                 let schema_method = quote! {{
                     let mut method_object = MethodObject::new(#rpc_name.to_string(), None);
                     let returns = ContentDescriptorOrReference::new_content_descriptor::<#returns>(
-                    stringify!(#returns).to_string(),
-                    None,
+                        stringify!(#returns).to_string(),
+                        None,
                     );
                     method_object.result = returns;
-                            method_object.params = #arg_schemas;
+                    method_object.params = #arg_schemas;
                     method_object
                 }};
                 schema_methods.push(schema_method);
@@ -51,7 +51,7 @@ pub fn generate_schema_method(methods: &[MethodRegistration]) -> Result<syn::Imp
         let mut document = OpenrpcDocument::default();
         let args_tuple = [#(#schema_methods,)*];
         for a in args_tuple.to_vec(){
-        document.add_object_method(a);
+            document.add_object_method(a);
         }
         document
     }};
