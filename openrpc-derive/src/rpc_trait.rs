@@ -98,6 +98,7 @@ pub fn rpc_trait(input: syn::Item) -> Result<proc_macro2::TokenStream> {
     );
     let openrpc_quote = quote!(
     mod #mod_name_ident {
+    use super::*;
     use openrpc_schema::document::*;
     #generate_schema_method
     });
