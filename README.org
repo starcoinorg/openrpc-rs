@@ -7,7 +7,7 @@
   Implement the schema of openrpc. Support to generate openrpc schema documents with the basic functions.
 + [[https://github.com/starcoinorg/openrpc-rs/tree/master/openrpc-derive][openrpc-derive]]
 
-  Implement a proc marco to generate openrpc schema for rust traits.
+  Implement a proc macro to generate openrpc schema for rust traits.
 
 * Examples
 
