@@ -14,8 +14,8 @@ proc-macro2 = "1.0"
 quote = "1.0.6"
 proc-macro-crate = "0.1.4"
 openrpc-schema = {path = "../openrpc-schema"}
-jsonrpc-derive = "18.0"
-jsonrpc-core-client= "18.0"
+jsonrpc-derive = {git = "https://github.com/starcoinorg/jsonrpc",rev = "296f11ffe2cc1c0d5a7f3844d3322f61dda1c1b2"}
+jsonrpc-core-client = {git = "https://github.com/starcoinorg/jsonrpc",rev = "296f11ffe2cc1c0d5a7f3844d3322f61dda1c1b2"}
 [dev-dependencies]
 jsonrpc-core = { version = "17.0"}
 serde = { version = "1.0", features = ["derive"] }
