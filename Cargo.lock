@@ -659,7 +659,7 @@ checksum = "7b4b9743ed687d4b4bcedf9ff5eaa7398495ae14e61cba0a295704edbc7decde"
 [[package]]
 name = "schemars"
 version = "0.8.8"
-source = "git+https://github.com/starcoinorg/schemars?rev=9b3705780b8fe9c8676ff82919869ba7405b1062#9b3705780b8fe9c8676ff82919869ba7405b1062"
+source = "git+https://github.com/starcoinorg/schemars?rev=a025526f45f50d7e31099fbfd0fb35fc70a78788#a025526f45f50d7e31099fbfd0fb35fc70a78788"
 dependencies = [
  "dyn-clone",
  "multiaddr",
@@ -671,7 +671,7 @@ dependencies = [
 [[package]]
 name = "schemars_derive"
 version = "0.8.8"
-source = "git+https://github.com/starcoinorg/schemars?rev=9b3705780b8fe9c8676ff82919869ba7405b1062#9b3705780b8fe9c8676ff82919869ba7405b1062"
+source = "git+https://github.com/starcoinorg/schemars?rev=a025526f45f50d7e31099fbfd0fb35fc70a78788#a025526f45f50d7e31099fbfd0fb35fc70a78788"
 dependencies = [
  "proc-macro2",
  "quote",
